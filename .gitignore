@@ -13,6 +13,11 @@ target/
 .springBeans
 .sts4-cache
 
+test-output/
+.gitreview
+.sts4-cache/
+
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -26,6 +31,7 @@ target/
 /nbdist/
 /.nb-gradle/
 build/
+/.apt_generated_tests/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
