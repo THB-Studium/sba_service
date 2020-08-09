@@ -35,6 +35,10 @@ public class Buch implements Serializable {
 	private long seiten;
 	private String zustand;
 	private String anmerkungen;
+	private String sprache;
+	private String art;
+	private String kategorie;
+	private String verfuegbarkeit;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@Fetch(FetchMode.JOIN)
@@ -51,7 +55,8 @@ public class Buch implements Serializable {
 	// KONSTRUKTOREN:
 	
 	public Buch(String titel, String autor, String verlag, long erscheinungsjahr, Date datum, String iSBN,
-			String medienart, long seiten, String zustand, String anmerkungen) {
+			String medienart, long seiten, String zustand, String anmerkungen, String sprache, String art,
+			String kategorie, String verfuegbarkeit) {
 		super();
 		this.setTitel(titel);
 		this.setAutor(autor);
@@ -63,19 +68,23 @@ public class Buch implements Serializable {
 		this.setSeiten(seiten);
 		this.setZustand(zustand);
 		this.setAnmerkungen(anmerkungen);
+		this.setSprache(sprache);
+		this.setArt(art);
+		this.setKategorie(kategorie);
+		this.setVerfuegbarkeit(verfuegbarkeit);
 	}
 
 	public Buch() {
-		this(null, null, null, 0, null, null, null, 0, null, null);
-	}
-
-	public UUID getId() {
-		return id;
+		this(null, null, null, 0, null, null, null, 0, null, null, null, null, null, null);
 	}
 
 	
 	
 	// SETTER & GETTER:
+
+	public UUID getId() {
+		return id;
+	}
 	
 	public void setId(UUID id) {
 		this.id = id;
@@ -161,6 +170,38 @@ public class Buch implements Serializable {
 		this.anmerkungen = anmerkungen;
 	}
 
+	public String getSprache() {
+		return sprache;
+	}
+
+	public void setSprache(String sprache) {
+		this.sprache = sprache;
+	}
+
+	public String getArt() {
+		return art;
+	}
+
+	public void setArt(String art) {
+		this.art = art;
+	}
+
+	public String getKategorie() {
+		return kategorie;
+	}
+
+	public void setKategorie(String kategorie) {
+		this.kategorie = kategorie;
+	}
+
+	public String getVerfuegbarkeit() {
+		return verfuegbarkeit;
+	}
+
+	public void setVerfuegbarkeit(String verfuegbarkeit) {
+		this.verfuegbarkeit = verfuegbarkeit;
+	}
+
 	public Reservierung getAktuelleReservierungen() {
 		return aktuelleReservierung;
 	}
@@ -175,6 +216,6 @@ public class Buch implements Serializable {
 
 	public void setAktuelleAusleihen(Ausleihen aktuelleAusleihen) {
 		this.aktuelleAusleihen = aktuelleAusleihen;
-	}
+	}	
 
 }
