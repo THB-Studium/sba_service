@@ -13,4 +13,5 @@ import com.example.demo.model.User;
 public interface UserRepository
 	extends JpaRepository<User, UUID>, JpaSpecificationExecutor<User> {
 
+    User findOneByBenutzernummer(String benutzernummer);
 }
