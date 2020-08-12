@@ -2,8 +2,6 @@ package com.example.demo;
 
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,7 +28,7 @@ import com.example.demo.repository.UserRepository;
 @EnableJpaAuditing
 @EnableAutoConfiguration(exclude = { SolrAutoConfiguration.class })
 @EntityScan(basePackages = { "com.example.demo.model" })
-public class SbaServiceApplication implements CommandLineRunner {
+public class SbaApplication implements CommandLineRunner {
 
     @Autowired
     private AdresseRepository adresseRepository;
@@ -41,10 +39,22 @@ public class SbaServiceApplication implements CommandLineRunner {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    public static void main(String[] args) {
+
+        /*** create application ***/
+        SpringApplication app = new SpringApplication(SbaApplication.class);
+
+        /*** add pid / port file writers ***/
+        app.addListeners(new ApplicationPidFileWriter());
+
+        /*** run application ***/
+        app.run(args);
+
+    }
+
     @Autowired
     public void authenticationManager(AuthenticationManagerBuilder builder,
-            UserRepository repository)
-            throws Exception {
+            UserRepository repository) throws Exception {
 
         builder.userDetailsService(new UserDetailsService() {
 
@@ -60,19 +70,6 @@ public class SbaServiceApplication implements CommandLineRunner {
         });
     }
 
-    public static void main(String[] args) {
-
-        /*** create application ***/
-        SpringApplication app = new SpringApplication(SbaServiceApplication.class);
-
-        /*** add pid / port file writers ***/
-        app.addListeners(new ApplicationPidFileWriter());
-
-        /*** run application ***/
-        app.run(args);
-
-    }
-
     @Override
     public void run(String... args) throws Exception {
 
@@ -81,11 +78,11 @@ public class SbaServiceApplication implements CommandLineRunner {
         List<Adresse> adresses = adresseRepository.findAll();
 
         // USER:
-        userRepository.save(new User("Steve", "Ngalamo", null, "111111", passwordEncoder.encode("steve"), adresses.get(0)));
-        userRepository.save(new User("Junior", "Wagueu", null, "222222", passwordEncoder.encode("junior"), adresses.get(0)));
-        userRepository.save(new User("Flora", "Goufack", null, "333333", passwordEncoder.encode("flora"), adresses.get(0)));
-        userRepository.save(new User("Dorline", "Damesse", null, "444444", passwordEncoder.encode("dorline"), adresses.get(0)));
-        userRepository.save(new User("Patricia", "Fotso", null, "555555", passwordEncoder.encode("patricia"), adresses.get(0)));
+        userRepository.save(new User("Steve", "Ngalamo", null, "11111111111", passwordEncoder.encode("steve"), adresses.get(0)));
+        userRepository.save(new User("Junior", "Wagueu", null, "22222222222", passwordEncoder.encode("junior"), adresses.get(0)));
+        userRepository.save(new User("Flora", "Goufack", null, "33333333333", passwordEncoder.encode("flora"), adresses.get(0)));
+        userRepository.save(new User("Dorline", "Damesse", null, "4444444444", passwordEncoder.encode("dorline"), adresses.get(0)));
+        userRepository.save(new User("Patricia", "Fotso", null, "5555555555", passwordEncoder.encode("patricia"), adresses.get(0)));
 
         // BUCH:
         // buchRepository.save(new Buch("Das kleine weiße Pferd", "Goudge",

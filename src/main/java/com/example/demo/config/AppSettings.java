@@ -7,11 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "sq")
 public class AppSettings {
     private String authorizationUsername;
-
     private String authorizationResourceId;
-
     private String authorizationSecret;
-
     private int accessTokenValidity;
 
     public String getAuthorizationUsername() {
