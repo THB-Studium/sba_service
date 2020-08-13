@@ -1,0 +1,30 @@
+{
+	"userPrincipalPropertyName": "benutzernummer",
+	"groups": {
+		"admin": "438e007c-16ac-4368-8160-8aff2d36d007"
+	},
+	"aclRules": [
+		{
+			"objectClass": "com.example.demo.model.Weiterleitung",
+			"ownerPermissions": "r,w,d",
+			"userRules": [],
+			"groupRules": [
+				{}
+			],
+			"expressionRules": [
+				{
+					"expression": "getAltBesitzer().getUserPrincipal()",
+					"permissions": "r"
+				},
+				{
+					"expression": "getNeuBesitzer().getUserPrincipal()",
+					"permissions": "r,w"
+				
+				}
+			],
+			"groupExpressionRules": [
+
+			]
+		}
+	]
+}

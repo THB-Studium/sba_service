@@ -12,90 +12,101 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.geminiald.aclsmanagement.models.HasAcl;
 import com.sun.istack.NotNull;
 
 @Entity
-public class Weiterleitung implements Serializable {
+public class Weiterleitung implements Serializable, HasAcl {
 
-	// ATTRIBUTES:
-	private static final long serialVersionUID = -8516974422426875288L;
-	
-	@Id
+    // ATTRIBUTES:
+    private static final long serialVersionUID = -8516974422426875288L;
+
+    @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-	private UUID id;
-	@NotNull
-	private Date datum;
-	
-	@NotNull
-	@OneToOne
+    private UUID id;
+    @NotNull
+    private Date datum;
+
+    @NotNull
+    @OneToOne
     @MapsId
-	private User altBesitzer;
-	
-	@NotNull
-	@OneToOne
+    private User altBesitzer;
+
+    @NotNull
+    @OneToOne
     @MapsId
-	private User neuBesitzer;	
-	
-	@NotNull
-	@OneToOne
+    private User neuBesitzer;
+
+    @NotNull
+    @OneToOne
     @MapsId
-	private Buch buch;
-	
-	
-	
-	// KONSTRUKTOREN:
-	
-	public Weiterleitung(Date datum, User altBesitzer, User neuBesitzer, Buch buch) {
-		super();
-		this.setDatum(datum);
-		this.setAltBesitzer(altBesitzer);
-		this.setNeuBesitzer(neuBesitzer);
-		this.setBuch(buch);
-	}
+    private Buch buch;
 
+    // KONSTRUKTOREN:
 
-	
-	// SETTER & GETTER:
+    public Weiterleitung(Date datum, User altBesitzer, User neuBesitzer, Buch buch) {
+        super();
+        this.setDatum(datum);
+        this.setAltBesitzer(altBesitzer);
+        this.setNeuBesitzer(neuBesitzer);
+        this.setBuch(buch);
+    }
 
-	public UUID getId() {
-		return id;
-	}
+    // SETTER & GETTER:
 
-	public void setId(UUID id) {
-		this.id = id;
-	}
+    public Weiterleitung() {
 
-	public Date getDatum() {
-		return datum;
-	}
+    }
 
-	public void setDatum(Date datum) {
-		this.datum = datum;
-	}
+    public UUID getId() {
+        return id;
+    }
 
-	public User getAltBesitzer() {
-		return altBesitzer;
-	}
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
-	public void setAltBesitzer(User altBesitzer) {
-		this.altBesitzer = altBesitzer;
-	}
+    public Date getDatum() {
+        return datum;
+    }
 
-	public User getNeuBesitzer() {
-		return neuBesitzer;
-	}
+    public void setDatum(Date datum) {
+        this.datum = datum;
+    }
 
-	public void setNeuBesitzer(User neuBesitzer) {
-		this.neuBesitzer = neuBesitzer;
-	}
+    public User getAltBesitzer() {
+        return altBesitzer;
+    }
 
-	public Buch getBuch() {
-		return buch;
-	}
+    public void setAltBesitzer(User altBesitzer) {
+        this.altBesitzer = altBesitzer;
+    }
 
-	public void setBuch(Buch buch) {
-		this.buch = buch;
-	}
+    public User getNeuBesitzer() {
+        return neuBesitzer;
+    }
+
+    public void setNeuBesitzer(User neuBesitzer) {
+        this.neuBesitzer = neuBesitzer;
+    }
+
+    public Buch getBuch() {
+        return buch;
+    }
+
+    public void setBuch(Buch buch) {
+        this.buch = buch;
+    }
+
+    @Override
+    public String getKey() {
+        return id.toString();
+    }
+
+    @Override
+    public String getUserPrincipal() {
+        return neuBesitzer.getBenutzernummer();
+    }
 
 }

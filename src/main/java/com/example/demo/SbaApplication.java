@@ -11,13 +11,9 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.solr.SolrAutoConfiguration;
 import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
-import com.example.demo.exception.ResourceUnauthorizedException;
 import com.example.demo.model.Adresse;
 import com.example.demo.model.User;
 import com.example.demo.repository.AdresseRepository;
@@ -26,6 +22,7 @@ import com.example.demo.repository.UserRepository;
 
 @SpringBootApplication
 @EnableJpaAuditing
+@EnableResourceServer
 @EnableAutoConfiguration(exclude = { SolrAutoConfiguration.class })
 @EntityScan(basePackages = { "com.example.demo.model" })
 public class SbaApplication implements CommandLineRunner {
@@ -52,24 +49,6 @@ public class SbaApplication implements CommandLineRunner {
 
     }
 
-    @Autowired
-    public void authenticationManager(AuthenticationManagerBuilder builder,
-            UserRepository repository) throws Exception {
-
-        builder.userDetailsService(new UserDetailsService() {
-
-            @Override
-            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                User user = repository.findOneByBenutzernummer(username);
-                if (user == null) {
-                    throw new ResourceUnauthorizedException(String.format("The user %s does not exists", username));
-                }
-
-                return new User(repository.findOneByBenutzernummer(username));
-            }
-        });
-    }
-
     @Override
     public void run(String... args) throws Exception {
 
@@ -81,8 +60,10 @@ public class SbaApplication implements CommandLineRunner {
         userRepository.save(new User("Steve", "Ngalamo", null, "11111111111", passwordEncoder.encode("steve"), adresses.get(0)));
         userRepository.save(new User("Junior", "Wagueu", null, "22222222222", passwordEncoder.encode("junior"), adresses.get(0)));
         userRepository.save(new User("Flora", "Goufack", null, "33333333333", passwordEncoder.encode("flora"), adresses.get(0)));
-        userRepository.save(new User("Dorline", "Damesse", null, "4444444444", passwordEncoder.encode("dorline"), adresses.get(0)));
-        userRepository.save(new User("Patricia", "Fotso", null, "5555555555", passwordEncoder.encode("patricia"), adresses.get(0)));
+        userRepository
+                .save(new User("Dorline", "Damesse", null, "4444444444", passwordEncoder.encode("dorline"), adresses.get(0)));
+        userRepository
+                .save(new User("Patricia", "Fotso", null, "5555555555", passwordEncoder.encode("patricia"), adresses.get(0)));
 
         // BUCH:
         // buchRepository.save(new Buch("Das kleine weiße Pferd", "Goudge",
