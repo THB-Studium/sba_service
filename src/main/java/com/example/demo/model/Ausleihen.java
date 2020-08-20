@@ -2,95 +2,69 @@ package com.example.demo.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
-
-import com.sun.istack.NotNull;
 
 @Entity
 public class Ausleihen implements Serializable {
 
-	// ATTRIBUTES:
-	private static final long serialVersionUID = -5701074175849764719L;
-	
-	@Id
+    // ATTRIBUTES:
+    private static final long serialVersionUID = -5701074175849764719L;
+
+    @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-	private UUID id;
-	@NotNull
-	private Date von;
-	@NotNull
-	private Date bis;
-	
+    private UUID id;
+    private Date von;
+    private Date bis;
 
-	@NotNull
-	@ManyToOne(fetch = FetchType.EAGER)
-	@Fetch(FetchMode.JOIN)
-	@JoinColumn(name = "userId", nullable = false)
-	private User ausleiheträger;
-	
-	@NotNull
-	@OneToMany(mappedBy = "aktuelleAusleihen", fetch = FetchType.EAGER)
-	private Set<Buch> buecher;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-	public Ausleihen(Date von, Date bis, User ausleiheträger, Set<Buch> buecher) {
-		super();
-		this.setVon(von);
-		this.setBis(bis);
-		this.setAusleiheträger(ausleiheträger);
-		this.setBuecher(buecher);
-	}
+    @ManyToOne
+    @JoinColumn(name = "buch_id")
+    private Buch buch;
 
-	public UUID getId() {
-		return id;
-	}
+    public Ausleihen(Date von, Date bis, UUID ausleiheträgerId) {
+        super();
+        this.setVon(von);
+        this.setBis(bis);
+    }
 
-	public void setId(UUID id) {
-		this.id = id;
-	}
+    public Ausleihen() {
+        this(null, null, null);
+    }
 
-	public Date getVon() {
-		return von;
-	}
+    public UUID getId() {
+        return id;
+    }
 
-	public void setVon(Date von) {
-		this.von = von;
-	}
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
-	public Date getBis() {
-		return bis;
-	}
+    public Date getVon() {
+        return von;
+    }
 
-	public void setBis(Date bis) {
-		this.bis = bis;
-	}
+    public void setVon(Date von) {
+        this.von = von;
+    }
 
-	public User getAusleiheträger() {
-		return ausleiheträger;
-	}
+    public Date getBis() {
+        return bis;
+    }
 
-	public void setAusleiheträger(User ausleiheträger) {
-		this.ausleiheträger = ausleiheträger;
-	}
-
-	public Set<Buch> getBuecher() {
-		return buecher;
-	}
-
-	public void setBuecher(Set<Buch> buecher) {
-		this.buecher = buecher;
-	}
+    public void setBis(Date bis) {
+        this.bis = bis;
+    }
 
 }

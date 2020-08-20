@@ -26,19 +26,12 @@ public class AuthClientDetails implements ClientDetails {
     private UUID id;
 
     private String clientId;
-
     private String clientSecret;
-
     private String grantTypes;
-
     private String scopes;
-
     private String resources;
-
     private String redirectUris;
-
     private Integer accessTokenValidity;
-
     private Integer refreshTokenValidity;
 
     @SuppressWarnings("unused")

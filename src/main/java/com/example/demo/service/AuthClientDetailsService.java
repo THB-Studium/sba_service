@@ -20,7 +20,6 @@ public class AuthClientDetailsService implements ClientDetailsService {
 
     @Autowired
     private AuthClientRepository authClientRepository;
-
     @Autowired
     private PasswordEncoder encoder;
 
@@ -37,7 +36,6 @@ public class AuthClientDetailsService implements ClientDetailsService {
             logger.warn(String.format("Could not create the client '%s'. This client exists already.", clientId));
             return null;
         } else {
-
             AuthClientDetails client = new AuthClientDetails();
             client.setClientId(clientId);
             client.setClientSecret(encoder.encode(clientPassword));

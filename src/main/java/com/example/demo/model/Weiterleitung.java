@@ -4,19 +4,17 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.geminiald.aclsmanagement.models.HasAcl;
-import com.sun.istack.NotNull;
-
 @Entity
-public class Weiterleitung implements Serializable, HasAcl {
+public class Weiterleitung implements Serializable {
 
     // ATTRIBUTES:
     private static final long serialVersionUID = -8516974422426875288L;
@@ -25,22 +23,20 @@ public class Weiterleitung implements Serializable, HasAcl {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     private UUID id;
-    @NotNull
+
+    @Column(nullable = false)
     private Date datum;
 
-    @NotNull
-    @OneToOne
-    @MapsId
+    @ManyToOne
+    @JoinColumn(name = "alt_besitzer_id")
     private User altBesitzer;
 
-    @NotNull
-    @OneToOne
-    @MapsId
+    @ManyToOne
+    @JoinColumn(name = "neu_besitzer_id")
     private User neuBesitzer;
 
-    @NotNull
-    @OneToOne
-    @MapsId
+    @ManyToOne
+    @JoinColumn(name = "buch_id")
     private Buch buch;
 
     // KONSTRUKTOREN:
@@ -99,14 +95,14 @@ public class Weiterleitung implements Serializable, HasAcl {
         this.buch = buch;
     }
 
-    @Override
-    public String getKey() {
-        return id.toString();
-    }
-
-    @Override
-    public String getUserPrincipal() {
-        return neuBesitzer.getBenutzernummer();
-    }
+    // @Override
+    // public String getKey() {
+    // return id.toString();
+    // }
+    //
+    // @Override
+    // public String getUserPrincipal() {
+    // return neuBesitzer.getBenutzernummer();
+    // }
 
 }

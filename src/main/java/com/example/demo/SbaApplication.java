@@ -5,34 +5,32 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.autoconfigure.solr.SolrAutoConfiguration;
 import org.springframework.boot.context.ApplicationPidFileWriter;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 import com.example.demo.model.Adresse;
 import com.example.demo.model.User;
 import com.example.demo.repository.AdresseRepository;
-import com.example.demo.repository.BuchRepository;
 import com.example.demo.repository.UserRepository;
 
 @SpringBootApplication
 @EnableJpaAuditing
 @EnableResourceServer
-@EnableAutoConfiguration(exclude = { SolrAutoConfiguration.class })
-@EntityScan(basePackages = { "com.example.demo.model" })
+@EnableJpaRepositories(basePackages = {"com.example.demo.repository"})
+@EntityScan(basePackages = {"com.example.demo.model"})
 public class SbaApplication implements CommandLineRunner {
 
     @Autowired
     private AdresseRepository adresseRepository;
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private BuchRepository buchRepository;
+    // @Autowired
+    // private BuchRepository buchRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -53,17 +51,27 @@ public class SbaApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         // ADRESSE:
-        adresseRepository.save(new Adresse("August-Bebel-Str. 15", 14770, "Brandenburg a.d.H", "Deutschland"));
         List<Adresse> adresses = adresseRepository.findAll();
+        if (adresses.isEmpty()) {
+            adresseRepository.save(new Adresse("August-Bebel-Str. 15", 14770, "Brandenburg a.d.H", "Deutschland"));
+            adresses = adresseRepository.findAll();
+        }
 
         // USER:
-        userRepository.save(new User("Steve", "Ngalamo", null, "11111111111", passwordEncoder.encode("steve"), adresses.get(0)));
-        userRepository.save(new User("Junior", "Wagueu", null, "22222222222", passwordEncoder.encode("junior"), adresses.get(0)));
-        userRepository.save(new User("Flora", "Goufack", null, "33333333333", passwordEncoder.encode("flora"), adresses.get(0)));
-        userRepository
-                .save(new User("Dorline", "Damesse", null, "4444444444", passwordEncoder.encode("dorline"), adresses.get(0)));
-        userRepository
-                .save(new User("Patricia", "Fotso", null, "5555555555", passwordEncoder.encode("patricia"), adresses.get(0)));
+        User[] users = {
+                new User("Steve", "Ngalamo", null, "11111111111", passwordEncoder.encode("steve"), adresses.get(0)),
+                new User("Junior", "Wagueu", null, "22222222222", passwordEncoder.encode("junior"), adresses.get(0)),
+                new User("Flora", "Goufack", null, "33333333333", passwordEncoder.encode("flora"), adresses.get(0)),
+                new User("Dorline", "Damesse", null, "4444444444", passwordEncoder.encode("dorline"), adresses.get(0)),
+                new User("Patricia", "Fotso", null, "5555555555", passwordEncoder.encode("patricia"), adresses.get(0))
+        };
+
+        for (User user : users) {
+            User userFound = userRepository.findOneByBenutzernummer(user.getBenutzernummer());
+            if (userFound == null) {
+                userRepository.save(user);
+            }
+        }
 
         // BUCH:
         // buchRepository.save(new Buch("Das kleine weiße Pferd", "Goudge",

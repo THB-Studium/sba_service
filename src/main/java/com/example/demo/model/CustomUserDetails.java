@@ -11,15 +11,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class CustomUserDetails implements UserDetails {
     private static final long serialVersionUID = 1158127235669445740L;
+
     protected UUID id;
-
     protected String username;
-
     protected String password;
+    protected boolean isActive;
 
     protected Collection<? extends GrantedAuthority> authorities;
-
-    protected boolean isActive;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -32,37 +30,31 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        // TODO Auto-generated method stub
         return password;
     }
 
     @Override
     public String getUsername() {
-        // TODO Auto-generated method stub
         return username;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        // TODO Auto-generated method stub
         return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        // TODO Auto-generated method stub
         return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        // TODO Auto-generated method stub
         return true;
     }
 
     @Override
     public boolean isEnabled() {
-        // TODO Auto-generated method stub
         return true;
     }
 

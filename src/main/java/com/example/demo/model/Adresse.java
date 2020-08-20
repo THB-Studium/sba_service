@@ -12,76 +12,72 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class Adresse implements Serializable {
 
-	// ATTRIBUTES:
-	private static final long serialVersionUID = 4393203046747137818L;
-	
-	@Id
+    // ATTRIBUTES:
+    private static final long serialVersionUID = 4393203046747137818L;
+
+    @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-	private UUID id;
-	private String strasse;
-	private long plz;
-	private String stadt;
-	private String land;
-	
-	
-	
-	// KONSTRUKTOREN:
-	
-	public Adresse(String strasse, long plz, String stadt, String land) {
-		super();
-		this.setStrasse(strasse);
-		this.setPlz(plz);
-		this.setLand(land);
-		this.setStadt(stadt);
-	}
-	
-	public Adresse() {
-		this(null, 0, null, null);
-	}
-	
-	
-	
-	// SETTER & GETTER:
+    private UUID id;
+    private String strasse;
+    private long plz;
+    private String stadt;
+    private String land;
 
-	public UUID getId() {
-		return id;
-	}
+    // KONSTRUKTOREN:
 
-	public void setId(UUID id) {
-		this.id = id;
-	}
+    public Adresse(String strasse, long plz, String stadt, String land) {
+        super();
+        this.setStrasse(strasse);
+        this.setPlz(plz);
+        this.setLand(land);
+        this.setStadt(stadt);
+    }
 
-	public String getStrasse() {
-		return strasse;
-	}
+    public Adresse() {
+        this(null, 0, null, null);
+    }
 
-	public void setStrasse(String strasse) {
-		this.strasse = strasse;
-	}
+    // SETTER & GETTER:
 
-	public long getPlz() {
-		return plz;
-	}
+    public UUID getId() {
+        return id;
+    }
 
-	public void setPlz(long plz) {
-		this.plz = plz;
-	}
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
-	public String getLand() {
-		return land;
-	}
+    public String getStrasse() {
+        return strasse;
+    }
 
-	public void setLand(String land) {
-		this.land = land;
-	}
+    public void setStrasse(String strasse) {
+        this.strasse = strasse;
+    }
 
-	public String getStadt() {
-		return stadt;
-	}
+    public long getPlz() {
+        return plz;
+    }
 
-	public void setStadt(String stadt) {
-		this.stadt = stadt;
-	}
+    public void setPlz(long plz) {
+        this.plz = plz;
+    }
+
+    public String getLand() {
+        return land;
+    }
+
+    public void setLand(String land) {
+        this.land = land;
+    }
+
+    public String getStadt() {
+        return stadt;
+    }
+
+    public void setStadt(String stadt) {
+        this.stadt = stadt;
+    }
 
 }

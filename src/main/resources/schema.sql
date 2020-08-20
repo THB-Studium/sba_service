@@ -14,7 +14,10 @@ create table if not exists oauth_client_details (
 
 create table if not exists oauth_client_token (
   token_id VARCHAR(256),
-  token bytea,
+  -- type for h2 and mysql
+  -- token bytea,
+  -- type for h2 and postgresql
+  token blob,
   authentication_id VARCHAR(256),
   user_name VARCHAR(256),
   client_id VARCHAR(256)
@@ -22,22 +25,28 @@ create table if not exists oauth_client_token (
 
 create table if not exists oauth_access_token (
   token_id VARCHAR(256),
-  token bytea,
+  -- type for h2 and mysql
+  token blob,
+  -- type for h2 and postgresql
+  -- token bytea,
   authentication_id VARCHAR(256),
   user_name VARCHAR(256),
   client_id VARCHAR(256),
-  authentication bytea,
+  authentication blob,
   refresh_token VARCHAR(256)
 );
 
 create table if not exists oauth_refresh_token (
   token_id VARCHAR(256),
-  token bytea,
-  authentication bytea
+  -- type for h2 and mysql
+  token blob,
+  -- type for h2 and postgresql
+  -- token bytea,
+  authentication blob
 );
 
 create table if not exists oauth_code (
-  code VARCHAR(256), authentication bytea
+  code VARCHAR(256), authentication blob
 );
 
 create table if not exists oauth_approvals (

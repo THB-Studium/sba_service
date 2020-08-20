@@ -10,21 +10,21 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.NotNull;
 
 @Entity
+@Table(name = "\"benutzer\"")
 public class User implements Serializable, UserDetails {
 
     // ATTRIBUTES:
@@ -37,20 +37,21 @@ public class User implements Serializable, UserDetails {
     private String vorname;
     private String nachname;
     private String email;
-    @NotNull
     private String benutzernummer;
-    @NotNull
     @JsonIgnore
     private String kennwort;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "adresseId")
+    @ManyToOne
+    @JoinColumn(name = "adresse_id")
     private Adresse adresse;
     @Transient
     private Set<? extends GrantedAuthority> authorities = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id", nullable = false, updatable = false),
+            inverseJoinColumns = @JoinColumn(name = "role_id", nullable = false, updatable = false))
     private Set<Role> roles = new HashSet<>();
 
     // KONSTRUKTOREN:

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "role")
+@Table(name = "\"role\"")
 public class Role implements Serializable {
     private static final long serialVersionUID = -3867425002676168734L;
 
