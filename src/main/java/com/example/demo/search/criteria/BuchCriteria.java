@@ -1,25 +1,23 @@
 package com.example.demo.search.criteria;
 
-import java.util.Date;
-
 public class BuchCriteria {
     
     // ATTRIBUTES:
     private String titel;
     private String autor;
-    private Date datum;
+    private String erscheinungsdatum;
+    private long erscheinungsjahr;
     private long isbn13;
     private long isbn10;
     private String medienart;
     private String verlag;
-    private long erscheinungsjahr;
     private String ausgabe; // edition
     private String uebersicht; // overview
     private String kategorie; // subjects
     private String zustand;
     private String anmerkungen;
-    private String signatur;
     private String sprache;
+    private String signatur;
     
     // KONSTRUKTOREN:
 
@@ -45,12 +43,12 @@ public class BuchCriteria {
         this.autor = autor;
     }
 
-    public Date getDatum() {
-        return datum;
+    public String getErscheinungsdatum() {
+        return erscheinungsdatum;
     }
 
-    public void setDatum(Date datum) {
-        this.datum = datum;
+    public void setErscheinungsdatum(String erscheinungsdatum) {
+        this.erscheinungsdatum = erscheinungsdatum;
     }
 
     public long getIsbn13() {

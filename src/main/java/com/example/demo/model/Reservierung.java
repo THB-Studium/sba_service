@@ -31,10 +31,6 @@ public class Reservierung implements Serializable {
     private Date bis;
 
     @ManyToOne
-    @JoinColumn(name = "reservetraeger_id", nullable = false)
-    private User reservetraeger;
-
-    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
@@ -44,11 +40,14 @@ public class Reservierung implements Serializable {
 
     // KONSTRUKTOREN:
 
-    public Reservierung(Date von, Date bis, User reserveträger) {
+    public Reservierung(Date von, Date bi) {
         super();
         this.setVon(von);
         this.setBis(bis);
-        this.setReservetraeger(reserveträger);
+    }
+    
+    public Reservierung() {
+        this(null, null);
     }
 
     // SETTER & GETTER:
@@ -75,14 +74,6 @@ public class Reservierung implements Serializable {
 
     public void setBis(Date bis) {
         this.bis = bis;
-    }
-
-    public User getReservetraeger() {
-        return reservetraeger;
-    }
-
-    public void setReservetraeger(User reservetraeger) {
-        this.reservetraeger = reservetraeger;
     }
 
     public User getUser() {

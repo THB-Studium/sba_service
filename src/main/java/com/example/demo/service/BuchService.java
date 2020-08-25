@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Buch;
 import com.example.demo.repository.BuchRepository;
+import com.example.demo.search.criteria.BuchCriteria;
+import com.example.demo.search.specs.BuchSpecs;
 
 @Service
 @Transactional(rollbackOn = Exception.class)
@@ -32,7 +35,7 @@ public class BuchService {
     
     
     /**
-     * TO GET ONE BOOK BY BOOK´S ID
+     * TO GET ONE BOOK BY ID
      * 
      * @param buchId
      * @return
@@ -46,5 +49,16 @@ public class BuchService {
                     String.format("A buch with the id %s does not exist", buchId.toString()));
         }
     }
+    
+    /**
+     * TO SEARCH A BOOK BY CRITERIA
+     * 
+     * @param buchCriteria
+     * @return
+     */
+    public Set<Buch> search(BuchCriteria buchCriteria) {
+        BuchSpecs specs = new BuchSpecs(buchCriteria);
+        return buchRepository.findAll(specs).stream().collect(Collectors.toSet());
+    } 
 
 }

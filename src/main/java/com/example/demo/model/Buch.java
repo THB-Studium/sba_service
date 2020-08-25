@@ -1,12 +1,12 @@
 package com.example.demo.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -22,18 +22,21 @@ public class Buch implements Serializable {
     private UUID id;
     private String titel;
     private String autor;
-    private Date datum;
-    private long isbn13;
-    private long isbn10;
-    private long preis;
+    private String erscheinungsdatum;
+    private long erscheinungsjahr;
+    private String isbn13;
+    private String isbn10;
+    private String isbn;
+    private String preis;
     private String medienart;
     private String verlag;
-    private long erscheinungsjahr;
     private String ausgabe; // edition
     private long seiten;
+    @Lob
     private String uebersicht; // overview
     private String kategorie; // subjects
     private String zustand;
+    @Lob
     private String anmerkungen;
     private String sprache;
     private long exemplare;
@@ -41,6 +44,32 @@ public class Buch implements Serializable {
     private String verfuegbarkeit;
 
     // KONSTRUKTOREN:
+
+    public Buch(String titel, String autor, String erscheinungsdatum, String isbn13, String isbn10, String isbn, String preis, String medienart,
+            String verlag, long erscheinungsjahr, String ausgabe, long seiten, String uebersicht, String kategorie,
+            String zustand, String anmerkungen, String sprache, long exemplare, String signatur, String verfuegbarkeit) {
+        super();
+        this.titel = titel;
+        this.autor = autor;
+        this.erscheinungsdatum = erscheinungsdatum;
+        this.isbn13 = isbn13;
+        this.isbn10 = isbn10;
+        this.isbn = isbn;
+        this.preis = preis;
+        this.medienart = medienart;
+        this.verlag = verlag;
+        this.erscheinungsjahr = erscheinungsjahr;
+        this.ausgabe = ausgabe;
+        this.seiten = seiten;
+        this.uebersicht = uebersicht;
+        this.kategorie = kategorie;
+        this.zustand = zustand;
+        this.anmerkungen = anmerkungen;
+        this.sprache = sprache;
+        this.exemplare = exemplare;
+        this.signatur = signatur;
+        this.verfuegbarkeit = verfuegbarkeit;
+    }
 
     public Buch() {
     }
@@ -71,35 +100,36 @@ public class Buch implements Serializable {
         this.autor = autor;
     }
 
-    public Date getDatum() {
-        return datum;
+    public String getErscheinungsdatum() {
+        return erscheinungsdatum;
     }
 
-    public void setDatum(Date datum) {
-        this.datum = datum;
+    public void setErscheinungsdatum(String erscheinungsdatum) {
+        this.erscheinungsdatum = erscheinungsdatum;
     }
 
-    public long getIsbn13() {
+    public String getIsbn13() {
         return isbn13;
     }
 
-    public void setIsbn13(long isbn13) {
+    public void setIsbn13(String isbn13) {
         this.isbn13 = isbn13;
+        this.setIsbn(isbn13);
     }
 
-    public long getIsbn10() {
+    public String getIsbn10() {
         return isbn10;
     }
 
-    public void setIsbn10(long isbn10) {
+    public void setIsbn10(String isbn10) {
         this.isbn10 = isbn10;
     }
 
-    public long getPreis() {
+    public String getPreis() {
         return preis;
     }
 
-    public void setPreis(long preis) {
+    public void setPreis(String preis) {
         this.preis = preis;
     }
 
@@ -205,6 +235,14 @@ public class Buch implements Serializable {
 
     public void setSignatur(String signatur) {
         this.signatur = signatur;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
 }

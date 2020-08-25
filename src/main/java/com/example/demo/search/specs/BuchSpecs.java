@@ -42,9 +42,9 @@ public class BuchSpecs implements Specification<Buch> {
         }
 
         // by datum:
-        if (criteria.getDatum() != null) {
-            Predicate datumPredicate = criteriaBuilder.equal(root.get(Buch_.datum), criteria.getDatum());
-            predicates.add(datumPredicate);
+        if (criteria.getErscheinungsdatum() != null) {
+            Predicate erscheinungsdatumPredicate = criteriaBuilder.like(root.get(Buch_.erscheinungsdatum), criteria.getErscheinungsdatum());
+            predicates.add(erscheinungsdatumPredicate);
         }
 
         // by isbn13:

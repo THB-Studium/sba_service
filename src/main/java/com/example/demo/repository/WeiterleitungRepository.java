@@ -9,5 +9,4 @@ import com.example.demo.model.Weiterleitung;
 
 public interface WeiterleitungRepository
         extends JpaRepository<Weiterleitung, UUID>, JpaSpecificationExecutor<Weiterleitung> {
-
 }
