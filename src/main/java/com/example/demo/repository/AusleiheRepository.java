@@ -15,6 +15,7 @@ public interface AusleiheRepository
     public Ausleihe findOneByBuchSignatur(String signatur);  
     
     public Set<Ausleihe> findAllByUserId(UUID userId);
+    public Set<Ausleihe> findAllByBuchIsbn(String isbn);
     
     public int countByBuchIsbn(String isbn13);
 }

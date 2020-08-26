@@ -1,8 +1,10 @@
 package com.example.demo.rest.weiterleitung;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.util.Set;
 
+import javax.mail.MessagingException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -21,6 +23,7 @@ import com.example.demo.model.Weiterleitung;
 import com.example.demo.rest.ApiConstants;
 import com.example.demo.rest.ausleihe.AusleiheRootResource;
 import com.example.demo.service.WeiterleitungService;
+import com.example.demo.transfert.EmailTO;
 import com.example.demo.transfert.IdTO;
 import com.example.demo.transfert.WeiterleitungTO;
 
@@ -68,6 +71,19 @@ public class WeiterleitungRootResource {
         log.info("Weiterleitung successfully created!");
 
         return Response.created(uri).entity(new IdTO(createdWeiterleitung.getId())).build();
+    }
+    
+    /**
+     * TO START A WEITERLEITUNG:
+     * 
+     * @param emailTO
+     * @throws UnsupportedEncodingException
+     * @throws MessagingException
+     */
+    @RequestMapping(path = "/start", method = RequestMethod.POST)
+    public void startWeiterleitung(EmailTO emailTO) throws UnsupportedEncodingException, MessagingException {
+        weiterleitungService.startWeiterleitung(emailTO);
+        log.info("Weiterleitungsnachrichten gesendet!");
     }
 
 }
