@@ -1,0 +1,81 @@
+28-08-2020 01:40:21.426 [35m[main][0;39m
+				[34mINFO [0;39m
+				com.example.demo.SbaApplication.logStarting - Starting SbaApplication on Don_Carmel_PC with PID 5340 (G:\Mes Cours\TH Brandenburg\Workspace\master\mux\sba_service\target\classes started by egoue in G:\Mes Cours\TH Brandenburg\Workspace\master\mux\sba_service)
+28-08-2020 01:40:21.432 [35m[main][0;39m
+				[34mINFO [0;39m
+				com.example.demo.SbaApplication.logStartupProfileInfo - No active profile set, falling back to default profiles: default
+28-08-2020 01:41:29.075 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+28-08-2020 01:41:29.779 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.s.d.r.c.RepositoryConfigurationDelegate.registerRepositoriesIn - Finished Spring Data repository scanning in 608ms. Found 9 JPA repository interfaces.
+28-08-2020 01:41:38.512 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.s.b.w.e.tomcat.TomcatWebServer.initialize - Tomcat initialized with port(s): 8080 (http)
+28-08-2020 01:41:38.553 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.a.coyote.http11.Http11NioProtocol.log - Initializing ProtocolHandler ["http-nio-8080"]
+28-08-2020 01:41:38.555 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.a.catalina.core.StandardService.log - Starting service [Tomcat]
+28-08-2020 01:41:38.556 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.a.catalina.core.StandardEngine.log - Starting Servlet engine: [Apache Tomcat/9.0.37]
+28-08-2020 01:41:39.182 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.a.c.c.C.[Tomcat].[localhost].[/].log - Initializing Spring embedded WebApplicationContext
+28-08-2020 01:41:39.183 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext - Root WebApplicationContext: initialization completed in 71928 ms
+28-08-2020 01:41:40.259 [35m[main][0;39m
+				[34mINFO [0;39m
+				com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Starting...
+28-08-2020 01:41:50.188 [35m[main][0;39m
+				[34mINFO [0;39m
+				com.zaxxer.hikari.HikariDataSource.getConnection - HikariPool-1 - Start completed.
+28-08-2020 01:41:52.455 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.h.jpa.internal.util.LogHelper.logPersistenceUnitInformation - HHH000204: Processing PersistenceUnitInfo [name: default]
+28-08-2020 01:41:53.775 [35m[main][0;39m
+				[34mINFO [0;39m
+				org.hibernate.Version.logVersion - HHH000412: Hibernate ORM core version 5.4.18.Final
+28-08-2020 01:41:56.425 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.h.annotations.common.Version.<clinit> - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+28-08-2020 01:41:56.948 [35m[main][0;39m
+				[34mINFO [0;39m
+				org.hibernate.dialect.Dialect.<init> - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+28-08-2020 01:42:17.253 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.h.e.t.j.p.i.JtaPlatformInitiator.initiateService - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+28-08-2020 01:42:17.441 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.s.o.j.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory - Initialized JPA EntityManagerFactory for persistence unit 'default'
+28-08-2020 01:42:22.724 [35m[main][0;39m
+				[31mWARN [0;39m
+				o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration.openEntityManagerInViewInterceptor - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+28-08-2020 01:42:30.373 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.s.s.c.ThreadPoolTaskExecutor.initialize - Initializing ExecutorService 'applicationTaskExecutor'
+28-08-2020 01:42:35.215 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.s.s.web.DefaultSecurityFilterChain.<init> - Creating filter chain: OrRequestMatcher [requestMatchers=[Ant [pattern='/oauth/token'], Ant [pattern='/oauth/token_key'], Ant [pattern='/oauth/check_token']]], [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@20f6b6e0, org.springframework.security.web.context.SecurityContextPersistenceFilter@5b0575d0, org.springframework.security.web.header.HeaderWriterFilter@1c5d376c, org.springframework.security.web.authentication.logout.LogoutFilter@7bdf94f2, org.springframework.security.oauth2.provider.client.ClientCredentialsTokenEndpointFilter@4c614d8c, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7dfec0bc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@62f6185a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6bf77ee, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@67cd84f9, org.springframework.security.web.session.SessionManagementFilter@71f4aeb6, org.springframework.security.web.access.ExceptionTranslationFilter@16890f00, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@49338f3]
+28-08-2020 01:42:35.251 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.s.s.web.DefaultSecurityFilterChain.<init> - Creating filter chain: org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfiguration$NotOAuthRequestMatcher@1d6a22dd, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@67671db1, org.springframework.security.web.context.SecurityContextPersistenceFilter@56554365, org.springframework.security.web.header.HeaderWriterFilter@51aa2a58, org.springframework.security.web.authentication.logout.LogoutFilter@42fa5cb, org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationProcessingFilter@52bc6fcf, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@666b1244, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@66130c3b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6e6f5842, org.springframework.security.web.session.SessionManagementFilter@726d8fa0, org.springframework.security.web.access.ExceptionTranslationFilter@2d23a5be, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4769378c]
+28-08-2020 01:42:35.256 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.s.s.web.DefaultSecurityFilterChain.<init> - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@301e5d23, org.springframework.security.web.context.SecurityContextPersistenceFilter@73e25780, org.springframework.security.web.header.HeaderWriterFilter@75784062, org.springframework.security.web.authentication.logout.LogoutFilter@1bf52f10, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1f4cb17b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@280099a0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@393bcd6b, org.springframework.security.web.session.SessionManagementFilter@5730b513, org.springframework.security.web.access.ExceptionTranslationFilter@56d742ad, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@723c5f86]
+28-08-2020 01:42:35.322 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.s.s.c.ThreadPoolTaskScheduler.initialize - Initializing ExecutorService 'taskScheduler'
+28-08-2020 01:42:35.391 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.a.coyote.http11.Http11NioProtocol.log - Starting ProtocolHandler ["http-nio-8080"]
+28-08-2020 01:42:35.858 [35m[main][0;39m
+				[34mINFO [0;39m
+				o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8080 (http) with context path ''
+28-08-2020 01:42:35.875 [35m[main][0;39m
+				[34mINFO [0;39m
+				com.example.demo.SbaApplication.logStarted - Started SbaApplication in 145.358 seconds (JVM running for 156.202)
